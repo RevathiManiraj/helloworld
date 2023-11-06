@@ -1,0 +1,39 @@
+# nile.toml file generated for nodehelloworld1 on 2023-11-06T15:57:45+05:30
+app = "nodehelloworld1"
+id = "f785a016cea3f59061aef9d47491b8f96aff3cf670b4b93734f0276e9d8d239787d8588ef1a1f4832fb1f091bc289d15"
+[build]
+  builtin = "node"
+kill_signal = "SIGINT"
+kill_timeout = 5
+[env]
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+[[services]]
+  external_port = 80
+  http_checks = []
+  internal_port = 4000
+  protocol = "tcp"
+  routing_policy = "Latency"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+  [services.limits]
+    cpu = "1"
+    memory = "256"
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+  [services.requests]
+    cpu = "0.5"
+    memory = "128"
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 6
+    timeout = "2s"
